@@ -1,4 +1,4 @@
-import { collectionUsers, collectionSessions, collectionProducts } from "../database/database.js";
+import { collectionUsers, collectionSessions } from "../database/database.js";
 
 export async function postSingUp(req, res) {
 
@@ -44,12 +44,4 @@ export async function deleteGoOut(req, res) {
     }
 
 
-}
-export async function getProducts(req,res) {
-    try {
-        const products = await collectionProducts.find().toArray()
-        res.send(products);
-    } catch (error) {
-        res.send(error);
-    }
 }

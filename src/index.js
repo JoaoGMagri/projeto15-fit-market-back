@@ -3,11 +3,13 @@ import express from 'express';
 import cors from 'cors';
 import joi from 'joi'
 import usersRouters from "./routers/users.routers.js"
+import products from "./routers/products.routers.js"
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(usersRouters);
+app.use(products);
 
 export const validateUsers = joi.object({
     name: joi.string().min(3).max(30).required(),
