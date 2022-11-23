@@ -30,18 +30,49 @@ export async function postSingIn(req, res) {
     }
 
 }
+export async function getUserInfo(req, res) {
+    
+    const userExists = req.userExists
+
+    try {
+        const InfoUser = await collectionUsers.findOne({ _id: userExists.userId });
+
+        delete InfoUser._id;
+        delete InfoUser.password;
+        
+        res.status(200).send(InfoUser);
+    } catch (error) {
+        console.log(err);
+        res.status(500).send({ message: err.message });
+    }
+}
 export async function deleteGoOut(req, res) {
 
     const { authorization } = req.headers;
     const token = authorization?.replace('Bearer ', '');
-    
+
     try {
         await collectionSessions.deleteOne({ token: token });
-        res.status(200).send({ message: "Token apagado com sucesso!"});
+        res.status(200).send({ message: "Token apagado com sucesso!" });
     } catch (error) {
         console.log(err);
         res.status(500).send({ message: err.message });
     }
 
+
+}
+export async function putEditImg(req, res,) {
+
+    const userExists = req.userExists
+    const { img } = req.body
+
+    try {
+        await collectionUsers.updateOne({ _id: userExists.userId }, { $set: {img} })
+
+        res.sendStatus(200)
+
+    } catch (error) {
+        res.send({ message: error.message });
+    }
 
 }
