@@ -39,10 +39,10 @@ export async function getUserInfo(req, res) {
 
         delete InfoUser._id;
         delete InfoUser.password;
-        
+
         res.status(200).send(InfoUser);
     } catch (error) {
-        console.log(err);
+        console.log(error);
         res.status(500).send({ message: err.message });
     }
 }
