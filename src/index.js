@@ -2,7 +2,6 @@
 import express from 'express';
 import cors from 'cors';
 import joi from 'joi'
-import { collectionProducts } from "../database/database.js";
 import usersRouters from "./routers/users.routers.js"
 
 const app = express();
@@ -21,14 +20,3 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log("Server running in port: 5000")
 });
-
-app.get("/products", async (req, res) => {
-
-    try {
-        const products = await collectionProducts.find().toArray()
-        res.send(products);
-    } catch (error) {
-        res.send(error);
-    }
-
-})
