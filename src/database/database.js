@@ -14,3 +14,4 @@ const db = mongoClient.db("fitMarket");
 export const collectionUsers = db.collection("users");
 export const collectionSessions = db.collection("sessions");
 export const collectionProducts = db.collection("products");
+export const collectionCarts = db.collection("carts");
