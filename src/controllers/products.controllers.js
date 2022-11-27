@@ -8,3 +8,8 @@ export async function getProducts(req,res) {
         res.send(error);
     }
 }
+export async function postCarts(req, res) {
+
+    
+
+}
