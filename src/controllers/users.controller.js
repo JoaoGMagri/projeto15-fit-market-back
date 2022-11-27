@@ -59,7 +59,6 @@ export async function deleteGoOut(req, res) {
         res.status(500).send({ message: err.message });
     }
 
-
 }
 export async function putEditImg(req, res,) {
 
