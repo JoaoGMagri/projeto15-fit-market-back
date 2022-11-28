@@ -1,4 +1,4 @@
-import {collectionProducts, collectionCarts} from "../database/database.js";
+import {collectionProducts, collectionCarts, collectionBuys} from "../database/database.js";
 import { ObjectId } from "mongodb";
 
 export async function getProducts( req, res ) {
@@ -60,6 +60,28 @@ export async function deleteCarts( req, res ) {
         
         await collectionCarts.deleteOne( {_id: ObjectId(_id)} );
         res.sendStatus(200);
+
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+
+}
+export async function postBuys(req, res) {
+
+    const { userId } = req.userExists;
+    const { paymentMethod, tel, adress } = req.body
+    try {
+
+        const obj = {
+            userId: userId,
+            paymentMethod,
+            tel,
+            adress
+        }
+        await collectionCarts.deleteMany({ userId })
+        await collectionBuys.insertOne(obj)
+        res.send("ok")
 
     } catch (error) {
         console.log(error);
